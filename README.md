@@ -1,1 +1,1 @@
-![alt text](imgs/FareyBW.png)
+![alt text](imgs/FareyBW.PNG)
