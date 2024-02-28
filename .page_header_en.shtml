@@ -1,0 +1,24 @@
+<!--#include virtual="/Includes/.uni-logo_en" -->
+<!--#include virtual="/Includes/.nav-top_en" -->
+<!-- ============ START NAVIGATION COMPLETION BELOW ============= -->
+<!-- enter <span class="klein">&gt;</span> (i.e. small '>') in front of any link -->
+<span class="klein">&gt;</span>
+<a class="w" href="/contact/mitarbeiter.html">Staff</a>
+<!--#if expr="\"$DOCUMENT_NAME\" != \"index.html\"" -->
+<span class="klein">&gt;</span>
+<a class="w" href="index.html" style="color:blue;"><!--#echo encoding="none" var="CONTRIBUTOR"--></a>
+<!--#endif -->
+<!-- ============ END OF NAVIGATION ======================== --></td>
+<!--#include virtual="/Includes/.nav-help2_en.shtml" -->        <!-- diese Datei muss existieren wenn $NAV=ON -->
+<!-- ****************** BEGIN NAVIGATION BLOCK ****************** -->
+<!--#if expr="\"$NAV\" != \"OFF\"" -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0" summary=""><tr><td width="20%" valign="top" class="nav">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" summary=""><tr><td valign="top" nowrap class="nav">&nbsp;<br><div>
+<!-- ::::::::::::::::: BEGIN NAVIGATOR ::::::::::::::::: -->
+<!--#include virtual="/navigator_en.shtml" -->         <!-- diese Datei muss existieren wenn $NAV=ON -->
+<!--                  ^ Den Slash vor navigator entfernen, falls ein eigener Navigator im Homeverzeichnis existiert -->
+<!-- ::::::::::::::::: END OF NAVIGATOR ::::::::::::::::: -->
+<br>&nbsp;</div></td></tr></table>
+</td><td width="80%" valign="top" class="body"><table width="100%" border="0" cellspacing="0" cellpadding="0" summary=""><tr><td valign="top" class="body">
+<!--#endif -->
+<!-- ****************** END OF NAVIGATION BLOCK ****************** -->

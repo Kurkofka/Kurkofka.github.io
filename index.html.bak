@@ -1,0 +1,270 @@
+<head>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async src="path-to-mathjax/MathJax.js?config=TeX-AMS_CHTML"></script>
+
+<title>Dr. Jan Kurkofka</title>
+<meta name="description" content="Homepage of Dr. Jan Kurkofka at Birmingham">
+<meta name="keywords" content="graph theory, infinite graph theory, local, 2-complex, Farey graph, end spaces, tangles">
+</head>
+<STYLE>A {text-decoration: none;} 
+.content {
+  max-width: 960px;
+  margin: auto;
+}
+body {
+  font-family: 'Tahoma', sans-serif;
+}
+</STYLE>
+<body>
+<div class="content">
+<!-- ::::::::::::::::: BEGIN BODY ::::::::::::::::: -->
+
+<h2 style="text-align:center;"> Dr. Jan Kurkofka</h2>
+<table width="143%" align="center" cellspacing="2" summary="Adress">
+<tr>
+<td>
+School of Mathematics<br>
+University of Birmingham<br>
+Edgbaston, Birmingham, B15 2TT, UK<br>
+</td>
+<td>
+E-Mail: j.lastname (at) bham.ac.uk
+</td>
+</tr>
+</table>
+
+<hr>
+
+<table width="140%" align="center" cellspacing="2" summary="Teaching">
+<tr>
+<td>
+
+		<h3>Teaching in Winter 2021/22</h3>
+		
+<p>
+		<ul>
+			<li>Research semester</li>
+		</ul>
+
+<h3>Teaching in <a href="AllTeaching.html">previous semesters</a></h3>		
+</td>
+<td>
+	<h3>Selected talks</h3>
+	<p>
+		<ul>
+			<li>Cambridge Combinatorics Seminar, November 2021.</li>
+			<li>Warwick Combinatorics Seminar, February 2021.</li>
+			<li>British Combinatorial Conference, July 2021.</li>
+		</ul>
+</td>
+</tr>
+</table>
+<hr>
+		
+		<h3>Research interests</h3>
+<p>
+I study the combinatorial and topological aspects of infinite graphs, with the overarching aim of better understanding the structure of infinite graphs. Specifically, this includes:
+</p>
+
+<p>
+
+<table width="100%" border="0" class="interests">
+          <tr><td width="25%" style="text-align:center;"><img src="FareyGraphPNG2.png" style="max-height:75%; max-width:75%" class="fltflt"/></td>
+              <td>
+
+        <font size="5">
+	  <div align="left">Farey graph</div>
+ </font>
+	  <p> <div align="left"> The Farey graph, shown on the left and surveyed on 300 pages in Hatcher's <a href="https://pi.math.cornell.edu/~hatcher/TN/TNpage.html">new book</a> 
+		(<a href="https://pi.math.cornell.edu/~hatcher/TN/TNbook.pdf">PDF</a>), 
+		plays a role in a number of mathematical fields ranging from group theory and number theory to geometry and dynamics.
+		Curiously, graph theory has not been among these until very recently, when I showed that the Farey graph plays a central role in graph theory too: 
+		it is one of two infinitely edge-connected graphs that must occur as a minor in every infinitely edge-connected graph.
+		Previously it was not known that there was any set of graphs determining infinite edge-connectivity by forming a minor-minimal list in this way, let alone a finite set.
+		This result raises many more questions that I investigate in this project.
+ </div> </p>
+        </td>
+      </tr>
+	  
+	  
+	  <tr><td>&nbsp;</td>
+	  </tr>
+	  	  
+	  <tr><td width="25%" style="text-align:center;"><img src="WhirlGraphPNG.PNG" style="max-height:75%; max-width:75%" class="fltflt"/></td>
+              <td>
+
+        <!--<font size="5">
+	  <div align="left">Whirl graph</div>
+ </font>
+	  <p>--> <div align="left"> I constructed the <b>whirl graph</b> on the left to answer three questions about the Farey graph at once. 
+	  For instance, the whirl graph is infinitely edge-connected and contains the Farey graph as a minor with branch sets of size two, but it does not contain a subdivision of the Farey graph.
+	  In fact, the whirl graph contains no subdivision of any naively constructed infinitely edge-connected graph, because it has the following property:
+	  For any two vertices $u,v$ and any integer $k\ge 1$, the whirl graph contains $k$ edge-disjoint order-compatible $u$-$v$ paths but not infinitely many.
+ </div> </p>
+        </td>
+      </tr>
+	  
+	  
+	  <tr><td>&nbsp;</td>
+	  </tr>
+	  	  
+	  <tr><td width="25%" style="text-align:center;"><img src="EndPNG.png" style="max-height:75%; max-width:75%" class="fltflt"/></td>
+              <td>
+
+        <font size="5">
+	  <div align="left">End spaces</div>
+ </font>
+	  <p> <div align="left"> The <i>ends</i> of a graph can be thought of as points at infinity towards which its one-way infinite paths converge. 
+	  Adding the ends to a graph extends its structure naturally, and the arising extension is the foundation of modern infinite graph theory.
+	  If the graph is <i>locally finite</i> in that all its vertices have only finitely many neighbours, then the extension is a well-known and thoroughly studied compactification with various applications.
+	  But if the graph is not locally finite, then the extension is not a compactification, and there are still many open questions.
+	  For instance, which graphs admit <i>end-faithful</i> spanning trees, spanning trees whose one-way infinite paths roughly correspond to the ends of the graph?
+ </div> </p>
+        </td>
+      </tr>
+	  
+	  <tr><td>&nbsp;</td>
+	  </tr>
+	  	  
+	  <tr><td width="25%" style="text-align:center;"><img src="StarCombFlower.png" style="max-height:75%; max-width:75%" class="fltflt"/></td>
+              <td>
+
+        <font size="5">
+	  <div align="left">Star-comb series</div>
+ </font>
+	  <p> <div align="left"> The star-comb lemma is a standard tool in infinite graph theory which tells us something about the nature of connectedness in infinite graphs: 
+	  that the way in which they link up their infinite sets of vertices can take two fundamentally different forms, a <span style="color: red;">star</span> or a <span style="color: orange;">comb</span>.
+	  Stars and combs, however, do not exclude each other, and so it is natural to ask for structures whose existence is <i>dual</i>, 
+	  in the sense of <i>complementary</i>, to the existence of a star or a comb at a given vertex set.
+	  B&uuml;rger and I determined complementary structures for stars, combs, and all relevant combinations thereof, in a series of four papers.
+The techniques that we used in our proofs span the whole breadth of non-set-theoretic infinite graph theory and include tools from general topology.
+As a consequence, the series establishes a new unified perspective on the whole arsenal of combinatorial and topological tools in infinite graph theory. 
+ </div> </p>
+        </td>
+      </tr>
+</table>
+
+
+
+
+		
+<hr>
+		
+        <h3>Publications and preprints</h3>
+<p>
+        
+		<h4>Farey graph</h4>
+		
+		<ul>
+		
+				<p>
+				<li> <i>Every infinitely edge-connected graph contains the Farey graph or</i>  $T_{\aleph_0}\!\ast t$ <i>as a minor</i>, Mathematische Annalen, 2021. (&nbsp;<a href="https://doi.org/10.1007/s00208-021-02259-7">Journal</a>&nbsp;|&nbsp;<a href="https://arxiv.org/abs/2004.06710">arXiv</a>&nbsp;)</li>
+				
+				<p>
+				<li> <i>The Farey graph is uniquely determined by its connectivity</i>, Journal of Combinatorial Theory, Series B <b>151</b> (2021), 223-234. (&nbsp;<a href="https://doi.org/10.1016/j.jctb.2021.06.006">Journal</a>&nbsp;|&nbsp;<a href="https://arxiv.org/abs/2006.12472">arXiv</a>&nbsp;)</li>
+				
+				<p>
+				<li> <i>Ubiquity and the Farey graph</i>, European Journal of Combinatorics <b>95</b> (2021), 103326. (&nbsp;<a href="https://doi.org/10.1016/j.ejc.2021.103326">Journal</a>&nbsp;|&nbsp;<a href="https://arxiv.org/abs/1912.02147">arXiv</a>&nbsp;)</li>
+				
+        </ul>
+		
+		
+		<p>
+		<h4>End spaces</h4>
+		
+		<ul>
+			<p> <li> (with <a href="/home/pitz/">Max Pitz</a>) <i>A representation theorem for end spaces of infinite graphs</i>, 2021, submitted. (<a href="https://arxiv.org/abs/2111.12670">arXiv</a>)</li>
+		
+			<p>
+				<li> (with <a href="https://www.math.uni-hamburg.de/home/geschke/">Stefan Geschke</a>, Ruben Melcher and <a href="/home/pitz/">Max Pitz</a>) <i>Halin's end degree conjecture</i>, to appear in Israel Journal of Mathematics. (<a href="https://arxiv.org/abs/2010.10394">arXiv</a>)</li>
+				
+			<p>
+				<li> (with Ruben Melcher and <a href="/home/pitz/">Max Pitz</a>) <i>Approximating infinite graphs by normal trees</i>, Journal of Combinatorial Theory, Series B <b>148</b> (2021), 173-183. (&nbsp;<a href="https://doi.org/10.1016/j.jctb.2020.12.007">Journal</a>&nbsp;|&nbsp;<a href="https://arxiv.org/abs/2002.08340">arXiv</a>&nbsp;)</li>
+		
+			<p>
+				<li> (with Ruben Melcher) <i>Countably determined ends and graphs</i>, 2021, submitted. (<a href="https://arxiv.org/abs/2101.07247">arXiv</a>)</li>
+				
+			<p>
+				<li> (with <a href="/home/buerger/">Carl B&uuml;rger</a>) <i>End-faithful spanning trees in graphs without normal spanning trees</i>, 2020, to appear in Journal of Graph Theory. (<a href="https://arxiv.org/abs/2006.01071">arXiv</a>)</li>
+				
+			<p>
+				<li> (with Ruben Melcher and <a href="/home/pitz/">Max Pitz</a>) <i>A strengthening of Halin's grid theorem</i>, 2021, to appear in Mathematika. (<a href="https://arxiv.org/abs/2104.10672">arXiv</a>)</li>
+		
+			
+		</ul>
+		
+		<p>
+		<h4>Star-comb series</h4>
+		
+		<ul>
+		
+				<p>
+				<li> (with <a href="/home/buerger/">Carl B&uuml;rger</a>) <i>Duality theorems for stars and combs I: Arbitrary stars and combs</i>, Journal of Graph Theory (2021). (&nbsp;<a href="https://doi.org/10.1002/jgt.22706">Journal</a>&nbsp;|&nbsp;<a href="https://arxiv.org/abs/2004.00594">arXiv</a>&nbsp;)</li>
+				
+				<p>
+				<li> (with <a href="/home/buerger/">Carl B&uuml;rger</a>) <i>Duality theorems for stars and combs II: Dominating stars and dominated combs</i>, Journal of Graph Theory (2021). (&nbsp;<a href="https://doi.org/10.1002/jgt.22757">Journal</a>&nbsp;|&nbsp;<a href="https://arxiv.org/abs/2004.00593">arXiv</a>&nbsp;)</li>
+				
+				<p>
+				<li> (with <a href="/home/buerger/">Carl B&uuml;rger</a>) <i>Duality theorems for stars and combs III: Undominated combs</i>, Journal of Graph Theory (2021). (&nbsp;<a href="https://doi.org/10.1002/jgt.22781">Journal</a>&nbsp;|&nbsp;<a href="https://arxiv.org/abs/2004.00592">arXiv</a>)</li>
+				
+				<p>
+				<li> (with <a href="/home/buerger/">Carl B&uuml;rger</a>) <i>Duality theorems for stars and combs IV: Undominating stars</i>, Journal of Graph Theory (2022). (&nbsp;<a href="https://doi.org/10.1002/jgt.22769">Journal</a>&nbsp;|&nbsp;<a href="https://arxiv.org/abs/2004.00591">arXiv</a>)</li>
+		
+		</ul>
+		
+		<p>
+		<h4>Ends and tangles</h4>
+		
+		<ul>
+				
+                <p>
+                <li> (with <a href="/home/pitz/">Max Pitz</a>) <i>Tangles and the Stone-&#268;ech compactification of infinite graphs</i>, Journal of Combinatorial Theory, Series B <b>146</b> (2021), 34-60. (&nbsp;<a href="https://doi.org/10.1016/j.jctb.2020.07.004">Journal</a>&nbsp;|&nbsp;<a href="https://arxiv.org/abs/1806.00220">arXiv</a>&nbsp;)</li>
+				
+				<p>
+				<li> (with <a href="/home/pitz/">Max Pitz</a>) <i>Ends, tangles and critical vertex sets</i>, Mathematische Nachrichten <b>292</b>(9) (2019), 2072-2091. (&nbsp;<a href="https://doi.org/10.1002/mana.201800174">Journal</a>&nbsp;|&nbsp;<a href="https://arxiv.org/abs/1804.00588">arXiv</a>&nbsp;)</li>
+				
+				<p>
+				<li> (with Ann-Kathrin Elm) <i>A tree-of-tangles theorem for infinite tangles</i>, 2020, submitted. (<a href="https://arxiv.org/abs/2003.02535">arXiv</a>)</li>
+
+		</ul>
+		
+		<p>
+		<h4>Connectivity</h4>
+		
+		<ul>
+		
+			<p>
+			<li> (with <a href="https://www.math.uni-hamburg.de/home/jacobs/">Raphael W. Jacobs</a>, <a href="https://www.math.uni-hamburg.de/home/joo/">Attila Jo&oacute;</a>, Paul Knappe and Ruben Melcher) <i>The Lov&#225;sz-Cherkassky theorem for locally finite graphs with ends</i>, 2021, submitted. (<a href="https://arxiv.org/abs/2109.11260">arXiv</a>)</li>
+			
+			<p>
+			<li> (with <a href="https://www.math.uni-hamburg.de/home/elbracht/">Christian Elbracht</a> and <a href="https://www.math.uni-hamburg.de/home/teegen/">Maximilian Teegen</a>) <i>Edge-connectivity and tree-structure in finite and infinite graphs</i>, 2021, submitted. (<a href="https://arxiv.org/abs/2012.07651">arXiv</a>)</li>
+			
+		</ul>
+</p>
+
+<hr>
+
+		<h3>Theses</h3>
+
+<p>
+
+		<ul>
+				<li> Dissertation (2020): <i>Ends and tangles, stars and combs, minors and the Farey graph</i>. (<a href="Dissertation.pdf">PDF</a>) </li>
+	
+				<p>
+				<li> Master's thesis (2017): <i>On the tangle compactification of infinite graphs</i>. (<a href="https://arxiv.org/abs/1908.10212">arXiv</a>) </li>
+
+		</ul>
+
+</p>
+
+
+<!-- :::::::::::::::::: END OF BODY :::::::::::::::::::::::::::::: -->
+</div></body></html>

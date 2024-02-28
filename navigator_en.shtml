@@ -1,0 +1,35 @@
+&nbsp;<img src="/icons/arr_lnk.gif" alt="bullet 1" width="4" height="7" border="0">
+&nbsp;<a href="/contact/index.html" class="na" accesskey="g" tabindex="1"><span class="ulin">G</span>eneral&nbsp;Information</a>&nbsp;&nbsp;
+<br>
+&nbsp;<img src="/icons/arr_lnk.gif" alt="bullet 2" width="4" height="7" border="0">
+&nbsp;<a href="http://www.math.uni-hamburg.de/contact/mitarbeiter.html" class="na" accesskey="p" tabindex="2"><span class="ulin">P</span>eople</a>&nbsp;&nbsp;
+<br>
+&nbsp;<img src="/icons/arr_lnk.gif" alt="bullet 3" width="4" height="7" border="0">
+&nbsp;<a href="/research/index.html" class="na" accesskey="r" tabindex="3"><span class="ulin">R</span>esearch</a>&nbsp;&nbsp;
+<br>
+&nbsp;<img src="/icons/arr_lnk.gif" alt="bullet 4" width="4" height="7" border="0">
+&nbsp;<a href="/teaching/index.html" class="na" accesskey="s" tabindex="4"><span class="ulin">S</span>tudying&nbsp;in&nbsp;Hamburg</a>&nbsp;&nbsp;
+<br>
+&nbsp;<img src="/icons/arr_lnk.gif" alt="bullet 5" width="4" height="7" border="0">
+&nbsp;<a href="/facilities/" class="na" accesskey="l" tabindex="5"><span class="ulin">L</span>ocal&nbsp;Facilities</a>&nbsp;&nbsp;
+<br><br>
+&nbsp;<img src="/icons/arr_lnk.gif" alt="bullet 6" width="4" height="7" border="0">
+&nbsp;<a href="/info/index.html" class="na" accesskey="n" tabindex="6"><span class="ulin">N</span>ews&nbsp;and&nbsp;Events</a>&nbsp;&nbsp;
+<br>
+
+<!--#if expr="\"$HINT\" = \"ON\"" -->
+&nbsp;<br>
+&nbsp;<br>
+<span style="font-size: smaller;">email addresses to be<br>
+completed by adding<br>
+the suffix
+'<strong>@uni-hamburg.de</strong>'
+</span>
+<!--#endif -->
+<!--#if expr="\"$JINT\" = \"ON\"" -->
+&nbsp;<br>
+&nbsp;<br>
+<p style="font-size: smaller; background-color: White; border: 1px solid Gray; margin-right: 5mm; padding-left: 2px; padding-right: 2px; text-align: center;">
+Allow javascript to enable<br>
+email addresses.
+<!--#endif -->

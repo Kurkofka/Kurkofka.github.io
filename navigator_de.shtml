@@ -1,0 +1,36 @@
+&nbsp;<img src="/icons/arr_lnk.gif" alt="bullet 1" width="4" height="7" border="0">
+&nbsp;<a href="/contact/index.html" class="na" accesskey="k" tabindex="1"><span class="ulin">K</span>ontakt&nbsp;und&nbsp;Struktur</a>&nbsp;&nbsp;
+<br>
+&nbsp;<img src="/icons/arr_lnk.gif" alt="bullet 2" width="4" height="7" border="0">
+&nbsp;<a href="http://www.math.uni-hamburg.de/contact/mitarbeiter.html" class="na" accesskey="p" tabindex="2">
+<span class="ulin">P</span>ersonen</a>&nbsp;&nbsp;
+<br>
+&nbsp;<img src="/icons/arr_lnk.gif" alt="bullet 3" width="4" height="7" border="0">
+&nbsp;<a href="/research/index.html" class="na" accesskey="f" tabindex="3"><span class="ulin">F</span>orschung</a>&nbsp;&nbsp;
+<br>
+&nbsp;<img src="/icons/arr_lnk.gif" alt="bullet 4" width="4" height="7" border="0">
+&nbsp;<a href="/teaching/index.html" class="na" accesskey="s" tabindex="4"><span class="ulin">S</span>tudium</a>&nbsp;&nbsp;
+<br>
+&nbsp;<img src="/icons/arr_lnk.gif" alt="bullet 5" width="4" height="7" border="0">
+&nbsp;<a href="/facilities/index.html" class="na" accesskey="o" tabindex="5">Angebote&nbsp;vor&nbsp;<span class="ulin">O</span>rt</a>&nbsp;&nbsp;
+<br>
+&nbsp;<img src="/icons/arr_lnk.gif" alt="bullet 6" width="4" height="7" border="0">
+&nbsp;<a href="/teaching/schule.html" class="na" accesskey="n" tabindex="6">A<span class="ulin">n</span>gebote&nbsp;f&uuml;r&nbsp;Sch&uuml;ler</a>&nbsp;&nbsp;
+<br><br>
+&nbsp;<img src="/icons/arr_lnk.gif" alt="bullet 7" width="4" height="7" border="0">
+&nbsp;<a href="/info/index.html" class="na" accesskey="a" tabindex="7"><span class="ulin">A</span>ktuelles</a>&nbsp;&nbsp;
+<br>
+<!--#if expr="\"$HINT\" = \"ON\"" -->
+&nbsp;<br>
+&nbsp;<br>
+<span style="font-size: smaller;">Die E-Mail-Adressen sind<br>
+jeweils zu erg&auml;nzen durch<br>
+'<strong>@uni-hamburg.de</strong>'</span>
+<!--#endif -->
+<!--#if expr="\"$JINT\" = \"ON\"" -->
+&nbsp;<br>
+<p style="font-size: smaller; background-color: White; border: 1px solid Gray; margin-right: 5mm; padding-left: 2px; padding-right: 2px; text-align: center;">
+zur Aktivierung der E-Mail- <br>
+Adressen bitte Javascript<br>
+einschalten.</p>
+<!--#endif -->

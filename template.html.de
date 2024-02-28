@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--#config timefmt="%Y-%m-%d" errmsg="SSI-Fehler" sizefmt="abbrev"-->
+<!--#set var="CONTRIBUTOR" value="VORNAME NAME" -->
+<!--#set var="EMAIL" value="javascript:linkTo_UnCryptMailto('nbjmup;xxxnbuiAnbui/voj.ibncvsh/ef');" -->
+<!--#set var="LANGUAGE"    value="de" -->
+<!--#set var="DOKUMENT"    value="template" -->   <!-- Name der Datei ohne Erweiterungen -->
+<!--#set var="GIBTS"       value="YES" -->        <!-- YES oder NO : andere Sprachversion existiert -->
+<!--#set var="NAV"         value="ON" -->         <!-- ON oder OFF -->
+<!--#set var="HINT"        value="OFF" -->        <!-- ON oder OFF -->
+<!--#set var="JINT"        value="ON" -->         <!-- ON oder OFF -->
+<!--#set var="CHARSET"     value="UTF-8" -->      <!-- Charset der Seite, wenn nicht iso8859-1 -->
+
+<!-- HTML-Dokumentation unter http://www.math.uni-hamburg.de/home/wwwmath/ -->
+
+<html lang='<!--#echo var="LANGUAGE" -->'>
+<head>
+<!--#include virtual="/Includes/.head_styles.shtml" -->
+
+<title><!--#echo encoding="none" var="CONTRIBUTOR" --></title>
+        <meta name='dc.title'       content='<!--#echo encoding="none" var="CONTRIBUTOR" -->'>
+        <meta name='title'          content='<!--#echo encoding="none" var="CONTRIBUTOR" -->'>
+        <meta name='dc.subject'     content='Homepage von <!--#echo encoding="none" var="CONTRIBUTOR" -->'>
+        <meta name='dc.description' content='<!--#echo encoding="none" var="CONTRIBUTOR" --> FB Mathematik Universit&auml;t Hamburg'>
+        <meta name='description'    content='<!--#echo encoding="none" var="CONTRIBUTOR" --> Vorlagendatei zur Erstellung pers&ouml;nlicher Seiten im Fachbereich Mathematik Universit&auml;t Hamburg'>
+        <meta name='keywords'       content='<!--#echo encoding="none" var="CONTRIBUTOR" --> FB Mathematik Universit&auml;t Hamburg'>
+        <meta name='dc.contributor' content='<!--#echo encoding="none" var="CONTRIBUTOR" -->'>
+        <meta name='dc.date'        content='<!--#echo var="LAST_MODIFIED" -->'>
+        <meta name='dc.identifier'  content='<!--#echo var="DOCUMENT_URI" -->'>
+        <meta name='dc.language'    content='<!--#echo var="LANGUAGE" -->'>
+        <script language="JavaScript" src="/Includes/unCryptMail.js" type="text/javascript"></script>
+</head><body>
+<!--#if expr="\"$LANGUAGE\" = \"de\"" -->
+<!--#include virtual=".page_header_de.shtml" -->
+<!--#else -->
+<!--#include virtual=".page_header_en.shtml" -->
+<!--#endif -->
+<!-- ::::::::::::::::: BEGIN BODY ::::::::::::::::: -->
+
+<h2><!--#echo encoding="none" var="CONTRIBUTOR" --></h2>
+<table width="85%" align="center" cellspacing="2" summary="Adressinformationen">
+<tr>
+<td>
+Fachbereich Mathematik<br>
+<a href="/spag/XX/" target="_blank">Bereich XX</a><br>
+Bundesstra&szlig;e 55 (Geomatikum)<br>
+20146 Hamburg
+</td>
+<td>
+Raum XXX<br>
+Tel.: +49 40 42838-XXXX<br>
+Fax:  +49 40 42838-XXXX<br>
+E-Mail: <a href="<!--#echo var="EMAIL" -->">
+VORNAME.NAME</a> (at) uni-hamburg.de
+</td>
+</tr>
+</table>
+
+<p>
+<strong>Sprechstunden im WiSe 2015:</strong><br>
+<!--#include virtual="sprechstunden.txt" -->
+</p>
+
+<!-- :::::::::::::::::: END OF BODY :::::::::::::::::::::::::::::: -->
+<!--#include virtual="/Includes/.pagefooter.shtml" -->
+</body></html>
