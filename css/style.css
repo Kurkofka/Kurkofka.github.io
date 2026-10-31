@@ -1,0 +1,151 @@
+/* Shared styles for all pages. */
+
+body {
+  font-family: Tahoma, sans-serif;
+}
+
+.content {
+  max-width: 960px;
+  margin: auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Heading sizes: the name (h1), section titles (h2), sub-headings (h3).
+   Sub-pages use a smaller h1 that looks like a section title. */
+h1 {
+  font-size: 1.5em;
+  margin: .83em 0;
+}
+
+h1.page-title,
+h2 {
+  font-size: 1.17em;
+  margin: 1em 0;
+}
+
+h3 {
+  font-size: 1em;
+  margin: 1.33em 0;
+}
+
+/* Lists with a blank line between items. */
+.spaced > li + li {
+  margin-top: 1em;
+}
+
+
+/* ---------- Side-by-side layouts ----------
+   The 2px gaps and 1px cell padding reproduce the spacing of the tables
+   the page was originally built with, so the look stays the same. */
+
+.site-header,
+.row,
+.project {
+  display: grid;
+  gap: 2px;
+  padding: 2px;
+}
+
+.site-header > *,
+.row > *,
+.project > * {
+  padding: 1px;
+  box-sizing: border-box;
+}
+
+
+/* Page header: logo and name in the middle, photo on the right. */
+
+.site-header {
+  grid-template-columns: 1fr 3fr 1fr;
+  align-items: center;
+  margin: .5cm 0;
+}
+
+.site-header .title {
+  grid-column: 2;
+  text-align: center;
+}
+
+.site-header .logo {
+  display: block;
+  max-width: 25%;
+  margin: 0 auto;
+  padding-bottom: .15cm;
+}
+
+.site-header .photo {
+  display: block;
+  max-width: 100%;
+  align-self: start;
+}
+
+
+/* Two columns: News | contact, Teaching | talks. */
+
+.row {
+  align-items: start;
+}
+
+.row > * > :first-child {
+  margin-top: 0;
+}
+
+.news-row {
+  grid-template-columns: 3fr 2fr;
+}
+
+.teaching-row {
+  grid-template-columns: 33fr 67fr;
+}
+
+.contact {
+  font-style: normal;
+  text-align: right;
+}
+
+
+/* Research interests: picture on the left, description on the right. */
+
+.research {
+  margin-bottom: 1em;
+}
+
+.project {
+  grid-template-columns: 1fr 3fr;
+  align-items: center;
+}
+
+.project + .project {
+  margin-top: 21px;
+}
+
+.project img {
+  display: block;
+  max-width: 75%;
+  margin: auto;
+}
+
+.project h3 {
+  font-size: x-large;
+  font-weight: normal;
+  margin: 0;
+}
+
+.project p {
+  margin: 0;
+}
+
+.project h3 + p {
+  margin-top: 1em;
+}
+
+
+/* ---------- Bottom of the page ---------- */
+
+.theses {
+  margin-bottom: 1cm;
+}

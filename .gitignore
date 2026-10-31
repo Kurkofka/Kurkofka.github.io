@@ -1,0 +1,15 @@
+# Everything committed to this repository is public: on GitHub and on the website.
+# The files below stay on this computer only.
+
+# Notes and settings for Claude Code
+CLAUDE.md
+.claude/
+
+# Local archive of retired files (all of it is also in the git history)
+_bin/
+
+# Editor and operating-system clutter
+.vscode/
+Thumbs.db
+desktop.ini
+.DS_Store
