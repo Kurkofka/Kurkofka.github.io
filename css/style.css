@@ -122,6 +122,13 @@ h3 {
   -webkit-tap-highlight-color: transparent;  /* no grey flash when tapped on phones */
 }
 
+/* Two logos, one per mode (see _logo/): both are small, and CSS picks the right one
+   before anything is drawn, so the top of the page never flashes the wrong one. */
+:root:not([data-theme="light"]) .site-header .logo-light,
+:root[data-theme="light"] .site-header .logo-dark {
+  display: none;
+}
+
 .site-header .photo {
   display: block;
   max-width: 100%;
@@ -301,8 +308,13 @@ h3 {
     --rule: #ddd;
   }
 
-  .theme-switch {
-    display: none;
+  .theme-switch,
+  :root .site-header .logo-dark {
+    display: none !important;
+  }
+
+  :root .site-header .logo-light {
+    display: block !important;
   }
 
   :root img.invert-dark {

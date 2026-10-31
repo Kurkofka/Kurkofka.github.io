@@ -1,13 +1,15 @@
 r"""Static and animated Farey-graph logo of the homepage.
 
 A Python port of tikz/main.tex (the TikZ animation the logo was originally made with).
-Running it writes
-    images/farey-logo.png              the static logo
-    images/farey-logo-animated.webp    the animation, starting and ending at the static logo
+Running it writes, for light mode and for dark mode (see VARIANTS),
+    images/farey-logo.png                  images/farey-logo-dark.png
+        the static logo
+    images/farey-logo-animated.webp        images/farey-logo-animated-dark.webp
+        the animation, starting and ending at the static logo
 
 Usage (from any folder):
-    py _logo/farey_logo.py                      # write both files for the website
-    py _logo/farey_logo.py --static-only        # only the static logo
+    py _logo/farey_logo.py                      # write all files for the website
+    py _logo/farey_logo.py --static-only        # only the static logos
     py _logo/farey_logo.py --size 2000 --out C:/somewhere   # e.g. a large copy for slides
 Needs Pillow and NumPy:  py -m pip install --user pillow numpy
 
@@ -46,8 +48,10 @@ SUPERSAMPLE = 4         # sub-pixels per pixel and direction, for smooth edges
 DEPTH = 9               # levels of halving, as \depth in main.tex
 FPS = 60                # frames per second
 CYCLE_MS = 1860         # length of one full cycle in milliseconds (1.86 s, the speed of the old GIF)
-BLACK = (0, 0, 0)
-WHITE = (255, 255, 255)
+VARIANTS = {            # file-name suffix: (colour of the "white" parts, colour of the "black" parts)
+    "": ((255, 255, 255), (0, 0, 0)),           # light mode: black and white
+    "-dark": ((0xd7, 0xd7, 0xd7), (0, 0, 0)),   # dark mode: white toned down to the page's text grey
+}
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SITE_IMAGES = os.path.join(HERE, "..", "images")
@@ -58,8 +62,10 @@ def move(x):
     return 120 * x * x - 60 * x + 30 if x > 0.5 else 60 * x
 
 
-def render(t, flip, size=SIZE, supersample=SUPERSAMPLE, depth=DEPTH):
-    """One picture: time t in [0, 1) within a half cycle; flip 0 = black base, 1 = white base."""
+def shapes(t, flip, size=SIZE, supersample=SUPERSAMPLE, depth=DEPTH):
+    """One picture without colours: time t in [0, 1) within a half cycle; flip 0 = black base,
+    1 = white base. Returns per pixel the share covered by the disc and the share covered by its
+    white parts (the rest of the disc is black), both between 0 and 1."""
     n = size * supersample
     c = (np.arange(n) + 0.5) / n * 2 - 1
     x, y = np.meshgrid(c, -c)                       # y points up, as in TikZ
@@ -86,20 +92,29 @@ def render(t, flip, size=SIZE, supersample=SUPERSAMPLE, depth=DEPTH):
             cap = idx[np.cos(delta) >= q.flat[idx] * math.cos(half)]
             white.flat[cap] = (level + flip) % 2 == 0   # as in \drawFarey: odd -> black, even -> white
 
-    rgb = np.where(white[..., None], np.array(WHITE, float), np.array(BLACK, float))
-    alpha = inside.astype(float)
-    # average the sub-pixels (colour weighted by coverage), then undo the weighting
-    premult = (rgb * alpha[..., None]).reshape(size, supersample, size, supersample, 3).mean(axis=(1, 3))
-    alpha = alpha.reshape(size, supersample, size, supersample).mean(axis=(1, 3))
-    rgb = np.where(alpha[..., None] > 0, premult / np.maximum(alpha[..., None], 1e-12), 0)
-    rgba = np.dstack([rgb, alpha * 255])
+    # average over the sub-pixels of each pixel
+    disc = inside.reshape(size, supersample, size, supersample).mean(axis=(1, 3))
+    light = (white & inside).reshape(size, supersample, size, supersample).mean(axis=(1, 3))
+    return disc, light
+
+
+def colour(disc, light, white, black):
+    """The picture from shapes() in the given colours, transparent outside the disc."""
+    premult = light[..., None] * np.array(white, float) + (disc - light)[..., None] * np.array(black, float)
+    rgb = np.where(disc[..., None] > 0, premult / np.maximum(disc[..., None], 1e-12), 0)
+    rgba = np.dstack([rgb, disc * 255])
     return Image.fromarray(np.clip(rgba + 0.5, 0, 255).astype(np.uint8), "RGBA")
 
 
-def render_job(job):
-    """render() with one tuple argument, for the parallel workers."""
+def render(t, flip, white=VARIANTS[""][0], black=VARIANTS[""][1], size=SIZE, supersample=SUPERSAMPLE, depth=DEPTH):
+    """One picture in the given colours (light-mode colours by default)."""
+    return colour(*shapes(t, flip, size, supersample, depth), white, black)
+
+
+def shapes_job(job):
+    """shapes() with one tuple argument, for the parallel workers."""
     t, flip, size = job
-    return render(t, flip, size=size)
+    return shapes(t, flip, size=size)
 
 
 def timing(fps=FPS, cycle_ms=CYCLE_MS):
@@ -115,30 +130,33 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     parser.add_argument("--size", type=int, default=SIZE, help="width and height in pixels")
     parser.add_argument("--out", default=SITE_IMAGES, help="output folder (default: the site's images/)")
-    parser.add_argument("--static-only", action="store_true", help="only write the static logo")
+    parser.add_argument("--static-only", action="store_true", help="only write the static logos")
     args = parser.parse_args()
     per_half, durations = timing()
     os.makedirs(args.out, exist_ok=True)
 
-    static = render(0.5, 1, size=args.size)
-    static_path = os.path.join(args.out, "farey-logo.png")
-    static.save(static_path, optimize=True)
-    print(f"wrote {static_path}")
+    static = shapes(0.5, 1, size=args.size)
+    for suffix, (white, black) in VARIANTS.items():
+        path = os.path.join(args.out, f"farey-logo{suffix}.png")
+        colour(*static, white, black).save(path, optimize=True)
+        print(f"wrote {path}")
     if args.static_only:
         return
 
     jobs = [(k / per_half, flip, args.size) for flip in (0, 1) for k in range(per_half)]
     with ProcessPoolExecutor() as pool:             # one worker per processor core
-        frames = list(pool.map(render_job, jobs))
+        frames = list(pool.map(shapes_job, jobs))
     first = per_half + per_half // 2                # flip 1, t = 1/2: the static picture
     frames = frames[first:] + frames[:first]
-    anim_path = os.path.join(args.out, "farey-logo-animated.webp")
-    # lossless: sharp black-and-white drawings compress better without loss than with;
-    # method 4 (of 0-6): method 6 takes minutes longer for about 2% smaller files
-    frames[0].save(anim_path, save_all=True, append_images=frames[1:], duration=durations, loop=0,
-                   lossless=True, quality=100, method=4)
-    print(f"wrote {anim_path} ({len(frames)} frames at {FPS} fps, one cycle {sum(durations)} ms, "
-          f"{os.path.getsize(anim_path) // 1024} KB)")
+    for suffix, (white, black) in VARIANTS.items():
+        pictures = [colour(*f, white, black) for f in frames]
+        path = os.path.join(args.out, f"farey-logo-animated{suffix}.webp")
+        # lossless: sharp black-and-white drawings compress better without loss than with;
+        # method 4 (of 0-6): method 6 takes minutes longer for about 2% smaller files
+        pictures[0].save(path, save_all=True, append_images=pictures[1:], duration=durations, loop=0,
+                         lossless=True, quality=100, method=4)
+        print(f"wrote {path} ({len(pictures)} frames at {FPS} fps, one cycle {sum(durations)} ms, "
+              f"{os.path.getsize(path) // 1024} KB)")
 
 
 if __name__ == "__main__":

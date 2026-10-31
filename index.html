@@ -25,7 +25,8 @@
     <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></svg>
   </button>
   <div class="title">
-    <img class="logo" src="images/farey-logo.png" alt="The Farey graph">
+    <img class="logo logo-dark" src="images/farey-logo-dark.png" data-animation="images/farey-logo-animated-dark.webp" alt="The Farey graph">
+    <img class="logo logo-light" src="images/farey-logo.png" data-animation="images/farey-logo-animated.webp" alt="The Farey graph">
     <h1>Dr. Jan Kurkofka</h1>
   </div>
   <img class="photo" src="images/photo.jpg" alt="Photo of Jan Kurkofka">
@@ -253,47 +254,53 @@
 
 <script>
   // The logo plays the animated Farey graph (made by _logo/farey_logo.py): while the
-  // mouse is over it, and on touch screens from one tap to the next. It always starts
-  // from its first frame, which is the static logo: browsers keep an animated image
-  // running in the background and resume it mid-way, so each start shows the
-  // (downloaded once) animation under a fresh blob: address, which the browser treats
-  // as a new image.
+  // mouse is over it, and on touch screens from one tap to the next. There are two logos,
+  // for dark and light mode, of which CSS shows one; each has its own animation
+  // (data-animation). It always starts from its first frame, which is the static logo:
+  // browsers keep an animated image running in the background and resume it mid-way,
+  // so each start shows the (downloaded once) animation under a fresh blob: address,
+  // which the browser treats as a new image.
   (function () {
-    var logo = document.querySelector('.site-header .logo');
-    var still = logo.getAttribute('src');
-    var animation = 'images/farey-logo-animated.webp';
-    var data = null, address = null, playing = false, pointer = 'mouse';
+    var blobs = {}, address = null, playing = null, pointer = 'mouse';   // playing: the animated logo, if any
 
-    function show() {
+    function show(logo, blob) {
       if (address) URL.revokeObjectURL(address);
-      address = URL.createObjectURL(data);
+      address = URL.createObjectURL(blob);
       logo.src = address;
     }
 
-    function start() {
-      playing = true;
-      if (data) return show();
+    function start(logo) {
+      var animation = logo.dataset.animation;
+      playing = logo;
+      if (blobs[animation]) return show(logo, blobs[animation]);
       fetch(animation)
         .then(function (response) { return response.blob(); })
-        .then(function (blob) { data = blob; if (playing) show(); })
+        .then(function (blob) { blobs[animation] = blob; if (playing === logo) show(logo, blob); })
         // Opened as a local file, browsers block fetch(); a fresh query string restarts the animation there.
-        .catch(function () { if (playing) logo.src = animation + '?' + Date.now(); });
+        .catch(function () { if (playing === logo) logo.src = animation + '?' + Date.now(); });
     }
 
     function stop() {
-      playing = false;
-      logo.src = still;
+      if (!playing) return;
+      playing.src = playing.dataset.still;
+      playing = null;
     }
 
     // Mouse: hover. Touch and pen: a tap toggles. (Phones also send imitation mouse
     // events on a tap, but no "leave" until the next tap elsewhere, hence pointer events.)
-    logo.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') start(); });
-    logo.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') stop(); });
-    logo.addEventListener('pointerdown', function (e) { pointer = e.pointerType; });
-    logo.addEventListener('click', function () {
-      if (pointer === 'mouse') return;
-      if (playing) stop(); else start();
+    document.querySelectorAll('.site-header .logo').forEach(function (logo) {
+      logo.dataset.still = logo.getAttribute('src');
+      logo.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') start(logo); });
+      logo.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') stop(); });
+      logo.addEventListener('pointerdown', function (e) { pointer = e.pointerType; });
+      logo.addEventListener('click', function () {
+        if (pointer === 'mouse') return;
+        if (playing) stop(); else start(logo);
+      });
     });
+
+    // Switching between dark and light mode swaps the logos: stop any animation.
+    new MutationObserver(stop).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
   })();
 </script>
 </body>

@@ -1,16 +1,18 @@
 # The Farey-graph logo
 
-The static logo (`images/farey-logo.png`) and its animation (`images/farey-logo-animated.webp`)
-are both computed by one script:
+The logo exists in two colourings, black and white for light mode and black with the page's
+text grey (`#d7d7d7`) for dark mode. Both, static and animated, are computed by one script:
 
     py _logo/farey_logo.py
 
-It takes about 20 seconds (the frames are computed in parallel) and overwrites the two files in
-`images/`. It needs Python with Pillow and NumPy (`py -m pip install --user pillow numpy`).
+It takes about 20 seconds (the frames are computed in parallel) and overwrites these files in
+`images/`: `farey-logo.png` and `farey-logo-animated.webp` (light mode), `farey-logo-dark.png`
+and `farey-logo-animated-dark.webp` (dark mode). It needs Python with Pillow and NumPy
+(`py -m pip install --user pillow numpy`).
 Options: `--static-only`, `--size N` (pixels), `--out FOLDER` (e.g. for a large copy for slides).
 
-Settings such as size, colours, frame rate (60 fps) and the length of one cycle (1.86 s) are at
-the top of `farey_logo.py`, and its opening comment explains the construction.
+Settings such as size, colours (`VARIANTS`), frame rate (60 fps) and the length of one cycle
+(1.86 s) are at the top of `farey_logo.py`, and its opening comment explains the construction.
 
 ## Where it comes from
 
