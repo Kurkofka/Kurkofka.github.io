@@ -83,6 +83,7 @@ h3 {
   max-width: 25%;
   margin: 0 auto;
   padding-bottom: .15cm;
+  -webkit-tap-highlight-color: transparent;  /* no grey flash when tapped on phones */
 }
 
 .site-header .photo {
@@ -110,7 +111,7 @@ h3 {
 }
 
 .teaching-row {
-  grid-template-columns: 33fr 67fr;
+  grid-template-columns: 2fr 3fr;
 }
 
 .contact {
