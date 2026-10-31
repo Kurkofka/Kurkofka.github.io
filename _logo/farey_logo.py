@@ -44,8 +44,8 @@ from PIL import Image
 SIZE = 320              # width = height in pixels; the page shows the logo at about 70-145 px
 SUPERSAMPLE = 4         # sub-pixels per pixel and direction, for smooth edges
 DEPTH = 9               # levels of halving, as \depth in main.tex
-FRAMES_PER_HALF = 30    # frames per half cycle; must be even, so that the static picture is a frame
-FRAME_MS = 31           # milliseconds per frame (one full cycle takes about 1.9 s, as the old GIF)
+FPS = 60                # frames per second
+CYCLE_MS = 1860         # length of one full cycle in milliseconds (1.86 s, the speed of the old GIF)
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 
@@ -102,13 +102,22 @@ def render_job(job):
     return render(t, flip, size=size)
 
 
+def timing(fps=FPS, cycle_ms=CYCLE_MS):
+    """Frames per half cycle (even, so that the static picture t = 1/2 is a frame) and the frame
+    durations. A WebP stores whole milliseconds, so they are rounded such that frame i starts at
+    i * 1000/fps ms exactly up to rounding: at 60 fps they alternate 17, 17, 16 ms."""
+    per_half = max(2, 2 * round(cycle_ms * fps / 1000 / 4))
+    starts = [round(i * 1000 / fps) for i in range(2 * per_half + 1)]
+    return per_half, [b - a for a, b in zip(starts, starts[1:])]
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     parser.add_argument("--size", type=int, default=SIZE, help="width and height in pixels")
     parser.add_argument("--out", default=SITE_IMAGES, help="output folder (default: the site's images/)")
     parser.add_argument("--static-only", action="store_true", help="only write the static logo")
     args = parser.parse_args()
-    assert FRAMES_PER_HALF % 2 == 0, "FRAMES_PER_HALF must be even"
+    per_half, durations = timing()
     os.makedirs(args.out, exist_ok=True)
 
     static = render(0.5, 1, size=args.size)
@@ -118,17 +127,18 @@ def main():
     if args.static_only:
         return
 
-    jobs = [(k / FRAMES_PER_HALF, flip, args.size) for flip in (0, 1) for k in range(FRAMES_PER_HALF)]
+    jobs = [(k / per_half, flip, args.size) for flip in (0, 1) for k in range(per_half)]
     with ProcessPoolExecutor() as pool:             # one worker per processor core
         frames = list(pool.map(render_job, jobs))
-    first = FRAMES_PER_HALF + FRAMES_PER_HALF // 2   # flip 1, t = 1/2: the static picture
+    first = per_half + per_half // 2                # flip 1, t = 1/2: the static picture
     frames = frames[first:] + frames[:first]
     anim_path = os.path.join(args.out, "farey-logo-animated.webp")
     # lossless: sharp black-and-white drawings compress better without loss than with;
     # method 4 (of 0-6): method 6 takes minutes longer for about 2% smaller files
-    frames[0].save(anim_path, save_all=True, append_images=frames[1:], duration=FRAME_MS, loop=0,
+    frames[0].save(anim_path, save_all=True, append_images=frames[1:], duration=durations, loop=0,
                    lossless=True, quality=100, method=4)
-    print(f"wrote {anim_path} ({len(frames)} frames, {FRAME_MS} ms each)")
+    print(f"wrote {anim_path} ({len(frames)} frames at {FPS} fps, one cycle {sum(durations)} ms, "
+          f"{os.path.getsize(anim_path) // 1024} KB)")
 
 
 if __name__ == "__main__":
