@@ -252,15 +252,16 @@
 </div>
 
 <script>
-  // The logo plays the animated Farey graph: while the mouse is over it, and on
-  // touch screens from one tap to the next. It always starts from its first frame:
-  // browsers keep a GIF's animation running in the background and resume it mid-way,
-  // so each start shows the (downloaded once) GIF under a fresh blob: address,
-  // which the browser treats as a new image.
+  // The logo plays the animated Farey graph (made by _logo/farey_logo.py): while the
+  // mouse is over it, and on touch screens from one tap to the next. It always starts
+  // from its first frame, which is the static logo: browsers keep an animated image
+  // running in the background and resume it mid-way, so each start shows the
+  // (downloaded once) animation under a fresh blob: address, which the browser treats
+  // as a new image.
   (function () {
     var logo = document.querySelector('.site-header .logo');
     var still = logo.getAttribute('src');
-    var gif = 'images/farey-logo-animated.gif';
+    var animation = 'images/farey-logo-animated.webp';
     var data = null, address = null, playing = false, pointer = 'mouse';
 
     function show() {
@@ -272,11 +273,11 @@
     function start() {
       playing = true;
       if (data) return show();
-      fetch(gif)
+      fetch(animation)
         .then(function (response) { return response.blob(); })
         .then(function (blob) { data = blob; if (playing) show(); })
-        // Opened as a local file, browsers block fetch(); a fresh query string restarts the GIF there.
-        .catch(function () { if (playing) logo.src = gif + '?' + Date.now(); });
+        // Opened as a local file, browsers block fetch(); a fresh query string restarts the animation there.
+        .catch(function () { if (playing) logo.src = animation + '?' + Date.now(); });
     }
 
     function stop() {

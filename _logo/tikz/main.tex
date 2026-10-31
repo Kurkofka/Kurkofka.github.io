@@ -1,0 +1,103 @@
+\documentclass[tikz]{standalone}
+
+\usetikzlibrary{math}
+\usetikzlibrary{backgrounds}
+\usepackage{ifthen}
+
+\begin{document}
+
+\pgfmathsetmacro\depth{9}%Later: 9
+\pgfmathsetmacro\maxFrames{29}%
+
+\pgfmathsetmacro\globalRadius{1}%
+\pgfmathsetmacro\Aposition{0.0}%
+\pgfmathsetmacro\Bposition{0.0}%
+\pgfmathsetmacro\Cposition{0.0}%
+
+\def\drawFarey#1#2#3#4%
+{
+	\pgfmathparse{#1}\edef\startAngle{\pgfmathresult}%
+	\pgfmathparse{#2}\edef\endAngle{\pgfmathresult}%
+	\pgfmathparse{#3}\edef\BWflip{\pgfmathresult}%
+	\pgfmathparse{#4}\edef\maxIterations{\pgfmathresult}%
+
+	\foreach \iteration in {0,...,\maxIterations}
+	{
+		\pgfmathsetmacro\BWcheck{\iteration+\BWflip}%
+		\pgfmathsetmacro\maxGapIterations{2^\iteration}%
+		\pgfmathsetmacro\gapAngle{(\endAngle-\startAngle)/\maxGapIterations}%
+		\pgfmathsetmacro\radius{\globalRadius/cos(\gapAngle/2)}%
+		\pgfmathsetmacro\circleRadius{\globalRadius*tan(\gapAngle*.5)}%
+		\foreach \gapIteration in {1,...,\maxGapIterations}
+		{
+			\pgfmathsetmacro\polarAngle{\startAngle+\gapAngle*(\gapIteration-.5)}%
+			%\draw (\polarAngle:\radius) circle (\circleRadius);
+			%
+			\begin{scope}
+      			\clip (0,0) circle (\globalRadius);
+      			\ifthenelse{\isodd{\BWcheck}}{
+      				\fill[even odd rule,draw,black,line width=0]%(2/(\iteration+1))*0.6mm] 
+      				(\polarAngle:\radius) circle (\circleRadius);
+      			}
+      			{
+      				\fill[even odd rule,draw,white,line width=0] (\polarAngle:\radius) circle (\circleRadius);
+      			}
+      		\end{scope}
+		}
+	}
+}
+
+\def\move#1#2%
+{
+	\pgfmathparse{#1}\edef\x{\pgfmathresult}%
+	\ifthenelse{\lengthtest{\x pt > 0.5pt}}
+	{
+		\pgfmathparse{(120*\x*\x)-(60*\x)+30}\edef #2{\pgfmathresult}%
+	}
+	{
+		\pgfmathparse{60*\x}\edef #2{\pgfmathresult}%
+	}
+}
+
+
+\foreach \flip in {1}{
+
+\begin{tikzpicture}
+	\fill [black] (0,0) circle (\globalRadius);%
+	\begin{scope}
+      	\clip (0,0) circle (\globalRadius);
+      	\ifthenelse{\flip=0}{
+      		\fill[even odd rule,draw,white,line width=0]
+      				(0,-\globalRadius) rectangle ++(2*\globalRadius,2*\globalRadius);
+      	}{
+      		\fill[even odd rule,draw,white,line width=0]
+      				(0,-\globalRadius) rectangle ++(-2*\globalRadius,2*\globalRadius);
+      	}
+    \end{scope}
+	\drawFarey{90}{180}{\flip}{\depth}%
+	\drawFarey{180}{270}{\flip}{\depth}%
+	\drawFarey{270}{360}{1-\flip}{\depth-1}%
+	\drawFarey{360}{450}{1-\flip}{\depth-1}%
+	\draw [line width=.1mm,white] (0,0) circle (\globalRadius);%
+\end{tikzpicture}
+
+\foreach \frame in {1,...,\maxFrames}
+{
+	\pgfmathsetmacro\t{\frame/(\maxFrames+1)}%
+	\move{\t}{\Aposition}%
+	\move{1-\t}{\Bposition}%
+	\begin{tikzpicture}
+	\ifthenelse{\flip=0}
+	{
+		\fill [black] (0,0) circle (\globalRadius);%
+	}{
+		\fill [white] (0,0) circle (\globalRadius);%
+	}
+	\drawFarey{90}{180+\Aposition}{\flip}{\depth}%
+	\drawFarey{180+\Aposition}{360-\Bposition}{\flip}{\depth}%
+	\drawFarey{360-\Bposition}{450}{\flip}{\depth}%
+
+	\draw [line width=.1mm,white] (0,0) circle (\globalRadius);%
+	\end{tikzpicture}
+}}
+\end{document}

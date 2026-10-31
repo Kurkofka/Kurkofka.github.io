@@ -16,3 +16,6 @@ _scratch/
 Thumbs.db
 desktop.ini
 .DS_Store
+
+# Python's compiled-code cache (e.g. from running _logo/farey_logo.py)
+__pycache__/
