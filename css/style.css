@@ -90,7 +90,10 @@ h3 {
   align-items: start;
 }
 
-.row > * > :first-child {
+/* No top margin above the first heading of a column (also when the column
+   holds several sections, like Teaching + Outreach). */
+.row > * > :first-child,
+.row > div > :first-child > :first-child {
   margin-top: 0;
 }
 
@@ -127,6 +130,11 @@ h3 {
   display: block;
   max-width: 75%;
   margin: auto;
+}
+
+/* Tall, narrow pictures (the cactus) get less width, so they don't tower over the text. */
+.project img.tall {
+  max-width: 58%;
 }
 
 .project h3 {
