@@ -1,7 +1,10 @@
 /* Shared styles for all pages. */
 
+/* Each device's own interface font (Segoe UI on Windows, San Francisco on Apple,
+   Roboto on Android): nothing is downloaded, so no third-party font server is contacted. */
 body {
-  font-family: Tahoma, sans-serif;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.45;
 }
 
 .content {
@@ -10,7 +13,12 @@ body {
 }
 
 a {
+  color: #0645ad;
   text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 /* Heading sizes: the name (h1), section titles (h2), sub-headings (h3).
@@ -156,4 +164,30 @@ h3 {
 
 .theses {
   margin-bottom: 1cm;
+}
+
+
+/* ---------- Phones: one column ----------
+   Side-by-side parts are stacked: News above contact, Teaching and Outreach
+   above the talks, each research picture above its text. */
+
+@media (max-width: 600px) {
+  .news-row,
+  .teaching-row,
+  .project {
+    grid-template-columns: 1fr;
+  }
+
+  .contact {
+    text-align: left;
+  }
+
+  .project img {
+    max-width: 50%;
+    margin: 0 auto 1em;
+  }
+
+  .project img.tall {
+    max-width: 30%;
+  }
 }

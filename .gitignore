@@ -8,6 +8,9 @@ CLAUDE.md
 # Local archive of retired files (all of it is also in the git history)
 _bin/
 
+# Local working files: previews, screenshots, helper scripts
+_scratch/
+
 # Editor and operating-system clutter
 .vscode/
 Thumbs.db
