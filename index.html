@@ -6,7 +6,7 @@
   <title>Dr. Jan Kurkofka</title>
   <meta name="description" content="Homepage of Dr. Jan Kurkofka at the University of Hamburg">
   <meta name="keywords" content="graph theory, graph minor theory, connectivity, canonical decompositions, cactus-decomposition, Tutte decomposition, local separators, Farey graph, infinite graphs">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#121212">
 
   <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
@@ -14,11 +14,16 @@
   <link rel="manifest" href="icons/site.webmanifest">
 
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/theme.js"></script>
 </head>
 <body>
 <div class="content">
 
 <header class="site-header">
+  <button class="theme-switch" type="button" title="Switch to light mode" aria-label="Switch to light mode">
+    <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v2.5M12 20v2.5M1.5 12H4M20 12h2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8"/></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></svg>
+  </button>
   <div class="title">
     <img class="logo" src="images/farey-logo.png" alt="The Farey graph">
     <h1>Dr. Jan Kurkofka</h1>
@@ -119,7 +124,7 @@
   </p>
 
   <div class="project">
-    <img class="tall" src="images/cactus.png" alt="A 2-connected graph and its cactus-decomposition">
+    <img class="tall" src="images/cactus-dark.png" data-light="images/cactus.png" alt="A 2-connected graph and its cactus-decomposition" loading="lazy">
     <div>
       <h3>Cactus-decompositions for all levels of connectivity</h3>
       <p>Decomposing graphs into highly connected regions is a foundational method in Graph Minor Theory, and Connectivity Theory more broadly. Explicit solutions to the following problem for any <i>k</i> would be tremendously useful for computing excluded minors: <i>Decompose every k-connected graph along k-separators into smaller pieces that are </i>(<i>k</i> + 1)<i>-connected or 'basic'</i>. The first step <i>k</i> = 1 is given by the block-cutvertex decomposition. For <i>k</i> = 2, the solution is a classical theorem of Tutte from 1966, which builds on earlier works of Whitney from the 1930s. It was long believed that Tutte's Theorem cannot be fully extended to higher connectivity. I proposed a new perspective on graph connectivity that allowed me to prove a Tutte-Theorem for <i>k</i> = 3 with Carmesin (FOCS 2023), and then for <i>k</i> = 4 with Planken (SODA 2026). Most recently, together with Bourneuf, Carmesin and Planken, we found an approximate solution for all <i>k</i>: an approximate cactus-decomposition for vertex-connectivity. Like the classical cactus of Dinitz, Karzanov and Lomonosov (1976), which represents all minimum edge-cuts of a graph, it represents all minimum vertex-cuts, up to a bounded number of vertices.</p>
@@ -127,7 +132,7 @@
   </div>
 
   <div class="project">
-    <img src="images/k5.png" alt="">
+    <img src="images/k5-dark.png" data-light="images/k5.png" alt="" loading="lazy">
     <div>
       <h3>Local-global invariants of graphs and groups</h3>
       <p>The question to what extent graph invariants &ndash; the chromatic number, say, or connectivity &ndash; are of local or global character,
@@ -142,7 +147,7 @@
   </div>
 
   <div class="project">
-    <img src="images/farey-graph.png" alt="The Farey graph">
+    <img class="invert-dark" src="images/farey-graph.png" alt="The Farey graph">
     <div>
       <h3>Farey graph</h3>
       <p>The Farey graph, shown on the left and surveyed on 300 pages in Hatcher's <a href="https://pi.math.cornell.edu/~hatcher/TN/TNpage.html">new book</a>
@@ -156,7 +161,7 @@
   </div>
 
   <div class="project">
-    <img src="images/whirl-graph.png" alt="The whirl graph">
+    <img class="invert-dark" src="images/whirl-graph.png" alt="The whirl graph">
     <div>
       <p>The <i>whirl graph</i> on the left answers three questions about the Farey graph at once.
         For instance, the whirl graph is infinitely edge-connected and contains the Farey graph as a minor with branch sets of size two, but it does not contain a subdivision of the Farey graph.

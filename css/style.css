@@ -1,10 +1,35 @@
 /* Shared styles for all pages. */
 
+/* ---------- Colours ----------
+   Dark by default; the switch at the top (js/theme.js) sets data-theme="light" on <html>.
+   Both palettes follow computerbase.de. In light mode, links use their darker orange,
+   which is easier to read on white than the bright one. */
+
+:root {
+  color-scheme: dark;
+  --bg: #121212;
+  --text: #d7d7d7;
+  --heading: #e0e0e0;
+  --link: #e84d0e;
+  --rule: #333;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #fff;
+  --text: #222;
+  --heading: #2c5b9c;
+  --link: #cc3900;
+  --rule: #ddd;
+}
+
 /* Each device's own interface font (Segoe UI on Windows, San Francisco on Apple,
    Roboto on Android): nothing is downloaded, so no third-party font server is contacted. */
 body {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   line-height: 1.45;
+  background: var(--bg);
+  color: var(--text);
 }
 
 .content {
@@ -12,8 +37,19 @@ body {
   margin: auto;
 }
 
+h1,
+h2,
+h3 {
+  color: var(--heading);
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--rule);
+}
+
 a {
-  color: #0645ad;
+  color: var(--link);
   text-decoration: none;
 }
 
@@ -92,6 +128,55 @@ h3 {
   align-self: start;
 }
 
+/* Light/dark switch: top left on the homepage (the header's empty first column),
+   top right on sub-pages. It shows the mode it switches to: a sun in dark mode, a moon in light mode. */
+
+.theme-switch {
+  padding: 4px;
+  border: 0;
+  background: none;
+  color: var(--text);
+  cursor: pointer;
+  line-height: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.theme-switch svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.theme-switch:hover {
+  color: var(--link);
+}
+
+.site-header .theme-switch {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: start;
+  align-self: start;
+}
+
+.page-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.theme-switch .icon-moon,
+:root[data-theme="light"] .theme-switch .icon-sun {
+  display: none;
+}
+
+:root[data-theme="light"] .theme-switch .icon-moon {
+  display: inline;
+}
+
 
 /* Two columns: News | contact, Teaching | talks. */
 
@@ -146,6 +231,16 @@ h3 {
   max-width: 58%;
 }
 
+/* Pictures in dark mode. Black-and-white drawings are inverted: white turns into the
+   page background and black into light grey, while hues are kept (the hue-rotate
+   undoes the inversion's colour shift). Pictures whose colours should stay exact have
+   their own dark file instead (made with _scratch/tools/dark_variant.py), written as
+   <img src="x-dark.png" data-light="x.png">; js/theme.js swaps in the light file. */
+
+:root:not([data-theme="light"]) img.invert-dark {
+  filter: invert(.93) hue-rotate(180deg);
+}
+
 .project h3 {
   font-size: x-large;
   font-weight: normal;
@@ -190,5 +285,27 @@ h3 {
 
   .project img.tall {
     max-width: 30%;
+  }
+}
+
+
+/* ---------- Printing: always the light version, without the switch ---------- */
+
+@media print {
+  :root {
+    color-scheme: light;
+    --bg: #fff;
+    --text: #222;
+    --heading: #2c5b9c;
+    --link: #cc3900;
+    --rule: #ddd;
+  }
+
+  .theme-switch {
+    display: none;
+  }
+
+  :root img.invert-dark {
+    filter: none !important;
   }
 }
