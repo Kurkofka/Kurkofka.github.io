@@ -101,22 +101,30 @@ h3 {
 }
 
 
-/* Page header: logo and name in the middle, photo on the right. */
+/* Page header: photo on the left, logo and name in the middle, light/dark switch and
+   contact details on the right. The outer columns are equally wide, so the name stays
+   centred on the page. On narrow screens the contact details move below (see the end of the file). */
 
 .site-header {
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "photo title switch"
+    "photo title contact";
   align-items: center;
   margin: .5cm 0;
 }
 
 .site-header .title {
-  grid-column: 2;
+  grid-area: title;
   text-align: center;
 }
 
+/* Sized with the page width (15% of it, at most 143px), as the middle column
+   is only as wide as the name. */
 .site-header .logo {
   display: block;
-  max-width: 25%;
+  width: min(143px, 15vw);
   margin: 0 auto;
   padding-bottom: .15cm;
   -webkit-tap-highlight-color: transparent;  /* no grey flash when tapped on phones */
@@ -130,13 +138,32 @@ h3 {
 }
 
 .site-header .photo {
+  grid-area: photo;
   display: block;
+  width: min(188px, 20vw);
   max-width: 100%;
   align-self: start;
 }
 
-/* Light/dark switch: top left on the homepage (the header's empty first column),
-   top right on sub-pages. It shows the mode it switches to: a sun in dark mode, a moon in light mode. */
+/* Contact details, at the bottom of the right column (level with the bottom of the photo).
+   The email address is split after the name, so no line is wider than the street address. */
+.contact {
+  grid-area: contact;
+  align-self: end;
+  font-style: normal;
+  text-align: right;
+}
+
+.contact > :first-child {
+  margin-top: 0;
+}
+
+.contact > :last-child {
+  margin-bottom: 0;
+}
+
+/* Light/dark switch: top right on every page. It shows the mode it switches to:
+   a sun in dark mode, a moon in light mode. */
 
 .theme-switch {
   padding: 4px;
@@ -163,9 +190,8 @@ h3 {
 }
 
 .site-header .theme-switch {
-  grid-column: 1;
-  grid-row: 1;
-  justify-self: start;
+  grid-area: switch;
+  justify-self: end;
   align-self: start;
 }
 
@@ -185,7 +211,7 @@ h3 {
 }
 
 
-/* Two columns: News | contact, Teaching | talks. */
+/* Two columns: Teaching | talks. */
 
 .row {
   align-items: start;
@@ -198,17 +224,8 @@ h3 {
   margin-top: 0;
 }
 
-.news-row {
-  grid-template-columns: 3fr 2fr;
-}
-
 .teaching-row {
   grid-template-columns: 2fr 3fr;
-}
-
-.contact {
-  font-style: normal;
-  text-align: right;
 }
 
 
@@ -270,19 +287,27 @@ h3 {
 }
 
 
-/* ---------- Phones: one column ----------
-   Side-by-side parts are stacked: News above contact, Teaching and Outreach
-   above the talks, each research picture above its text. */
+/* ---------- Narrow screens and phones ----------
+   Below 700px the postal address would come too close to the name, so the contact
+   details move below photo, name and switch. Below 600px the other side-by-side parts
+   are stacked too: Teaching and Outreach above the talks, each research picture above its text. */
 
-@media (max-width: 600px) {
-  .news-row,
-  .teaching-row,
-  .project {
-    grid-template-columns: 1fr;
+@media (max-width: 700px) {
+  .site-header {
+    grid-template-areas:
+      "photo title switch"
+      "contact contact contact";
   }
 
   .contact {
-    text-align: left;
+    text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .teaching-row,
+  .project {
+    grid-template-columns: 1fr;
   }
 
   .project img {
