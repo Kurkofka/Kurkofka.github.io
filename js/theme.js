@@ -8,12 +8,14 @@
   } catch (e) {}
 
   // Pictures with their own dark version are written as <img src="x-dark.png" data-light="x.png">:
-  // the dark file is the default, and the light one is only fetched when needed.
+  // the dark file is the default, and the light one is only fetched when needed. A picture with a
+  // phone version has it in <source srcset="y-dark.png" data-light="y.png">, swapped the same way.
   function pictures(light) {
-    document.querySelectorAll('img[data-light]').forEach(function (img) {
-      if (!img.dataset.dark) img.dataset.dark = img.getAttribute('src');
-      var wanted = light ? img.dataset.light : img.dataset.dark;
-      if (img.getAttribute('src') !== wanted) img.src = wanted;
+    document.querySelectorAll('img[data-light], source[data-light]').forEach(function (el) {
+      var attribute = el.tagName === 'SOURCE' ? 'srcset' : 'src';
+      if (!el.dataset.dark) el.dataset.dark = el.getAttribute(attribute);
+      var wanted = light ? el.dataset.light : el.dataset.dark;
+      if (el.getAttribute(attribute) !== wanted) el.setAttribute(attribute, wanted);
     });
   }
 

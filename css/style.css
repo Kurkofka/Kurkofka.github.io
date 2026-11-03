@@ -95,7 +95,8 @@ h3 {
 
 .site-header > *,
 .row > *,
-.project > * {
+.project > *,
+.project > picture > img {
   padding: 1px;
   box-sizing: border-box;
 }
@@ -256,6 +257,18 @@ h3 {
   max-width: 58%;
 }
 
+/* A <picture> holds a picture with a phone version (the cactus, turned sideways on phones).
+   It makes no box of its own, so its <img> is placed like any other research picture; its
+   <source> must then be hidden, or it would take a grid cell (hiding it doesn't change
+   which file the browser picks). */
+.project picture {
+  display: contents;
+}
+
+.project picture source {
+  display: none;
+}
+
 /* Pictures in dark mode. Black-and-white drawings are inverted: white turns into the
    page background and black into light grey, while hues are kept (the hue-rotate
    undoes the inversion's colour shift). Pictures whose colours should stay exact have
@@ -318,6 +331,11 @@ h3 {
 
   .project img.tall {
     max-width: 30%;
+  }
+
+  /* The cactus's phone version is wide instead of tall, so it can use most of the width. */
+  .project picture img.tall {
+    max-width: 85%;
   }
 }
 
