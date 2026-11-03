@@ -120,11 +120,12 @@ h3 {
   text-align: center;
 }
 
-/* Sized with the page width (15% of it, at most 143px), as the middle column
-   is only as wide as the name. */
+/* A fixed width rather than a percentage, as the middle column is only as wide as the name.
+   Full size (143px) on screens from about 560px; on phones as tall as the photo
+   (which is 20vw wide, so 25.5vw tall). */
 .site-header .logo {
   display: block;
-  width: min(143px, 15vw);
+  width: min(143px, 25.5vw);
   margin: 0 auto;
   padding-bottom: .15cm;
   -webkit-tap-highlight-color: transparent;  /* no grey flash when tapped on phones */
